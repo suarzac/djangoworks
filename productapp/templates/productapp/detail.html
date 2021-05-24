@@ -1,6 +1,5 @@
-<h1>{{ question.question_text }}</h1>
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }}</li>
-{% endfor %}
-</ul>
+<h1>{{ product.product_name }}</h1>
+<p>{{ product.product_category }}</p>
+<p>{{ product.product_description }}</p>
+<img src='{{ product.product_image.url }}' style='max-height:300px'> 
+<!-- iamge wont load, the iamge url looks correct however-->

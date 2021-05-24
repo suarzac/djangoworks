@@ -1,9 +1,9 @@
-{% if latest_question_list %}
+{% if product_list %}
     <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% for product in product_list %}
+        <li><a href="{% url 'productapp:detail' product.id %}">{{ product.product_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p> No products available.</p>
 {% endif %}
