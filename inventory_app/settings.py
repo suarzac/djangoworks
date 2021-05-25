@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'inventory_app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# Which one are you using??? I see 2 different databases both being 'default' ??
 
 DATABASES = {
     'default': {
