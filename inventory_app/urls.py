@@ -1,26 +1,24 @@
-"""inventory_app URL Configuration
+from django.urls import re_path
+from django.views.generic import ListView, UpdateView, DetailView
+from .views import ProductList, ProductDetail, CreateProduct, DeleteProduct, UpdateProduct
+from .models import Product, Category
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import include, path
-from . import settings
-from django.contrib.staticfiles.urls import static
+app_name = 'products'
 
 urlpatterns = [
-    path(('', include('productapp.urls'))),
-    path('productapp/', include('productapp.urls')),
-    path('polls/', include('polls.urls')),
-    path('admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # List all products ex.: /products/
+    re_path(r'^$', ProductList.as_view(), name='product_list'),
+
+    # Provide details for product, ex.: /products/1/
+    re_path(r'^(?P<pk>\d+)/$', ProductDetail.as_view(), name='product_detail'),
+
+    # Delete product, ex.: /products/delete/1/
+    re_path(r'^delete/(?P<pk>\d+)$', DeleteProduct.as_view(), name='product_delete'),
+
+    # Create a new product ex.: /products/create
+    re_path(r'^create/$', CreateProduct.as_view(), name='product_create'),
+    
+    # Update a current product ex.: /products/update/1
+    re_path(r'^update/(?P<pk>\d+)$', UpdateProduct.as_view(), name='product_update'), 
+    
+]

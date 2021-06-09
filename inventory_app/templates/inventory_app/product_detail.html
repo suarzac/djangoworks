@@ -1,0 +1,24 @@
+{% extends '../base.html' %}
+
+{% block title %} Details {% endblock %}
+
+{% block content %} 
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1> {{ product.product_name }} </h1>
+            <p> ${{ product.product_price }} </p>
+            {{ product.product_description|linebreaks }}
+            <p><a class="btn btn-secondary" href="{% url 'products:product_delete' product.id %}" role="button">Delete Product &raquo;</a></p>
+            <p><a class="btn btn-secondary" href="{% url 'products:product_update' product.id %}" role="button">Update Product &raquo;</a></p>
+        </div>
+    </div>
+    
+    
+
+    <img src="{% if product.product_image %}{{ product.product_image.url }}{% endif %}">
+
+    
+
+    
+{% endblock content %}
